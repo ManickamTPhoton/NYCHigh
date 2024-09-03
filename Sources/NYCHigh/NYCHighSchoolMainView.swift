@@ -9,9 +9,11 @@ import SwiftUI
 
 public struct NYCHighSchoolMainView: View {
     
-    init(){}
-    
     @StateObject var viewModel = NYCHighSchoolMainViewModel()
+    
+    init(viewModel: NYCHighSchoolMainViewModel = NYCHighSchoolMainViewModel()) {
+
+    }
     
     public var body: some View {
         VStack {
