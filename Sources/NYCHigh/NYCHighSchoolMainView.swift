@@ -8,19 +8,21 @@
 import SwiftUI
 import NYCHigh
 
-struct NYCHighSchoolMainView: View {
+public struct NYCHighSchoolMainView: View {
+    
+    init(){}
+    
     @StateObject var viewModel = NYCHighSchoolMainViewModel()
     
-    var body: some View {
-        SwiftUIView()
-//        VStack {
-//    
-//            if viewModel.isLoading {
-//                ProgressView("Loading...")
-//            } else if let errorMessage = viewModel.errorMessage {
-//                Text("Error: \(errorMessage)")
-//                    .foregroundColor(.red)
-//            } else {
+    public var body: some View {
+        VStack {
+    
+            if viewModel.isLoading {
+                ProgressView("Loading...")
+            } else if let errorMessage = viewModel.errorMessage {
+                Text("Error: \(errorMessage)")
+                    .foregroundColor(.red)
+            } else {
 //                NavigationStack {
 //                    List(viewModel.schoolsList, id: \.schoolName) { item in
 //                        NavigationLink(destination: NYCHighSchoolDetailsView()) {
@@ -28,12 +30,12 @@ struct NYCHighSchoolMainView: View {
 //                        }
 //                    }
 //                }
-//            }
-//        }
-//        .task {
-//            viewModel.fetchSchoolsList()
-//        }
-//        .navigationTitle("NYC Schools List Page")
+            }
+        }
+        .task {
+            viewModel.fetchSchoolsList()
+        }
+        .navigationTitle("NYC Schools List Page")
     }
 }
 

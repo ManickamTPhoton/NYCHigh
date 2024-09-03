@@ -7,7 +7,7 @@ let package = Package(
     name: "NYCHigh",
     platforms: [
         .iOS(.v15),
-        .macOS(.v10_15),
+        .macOS(.v12),
         .tvOS(.v14),
         .watchOS(.v6)
     ],
