@@ -11,7 +11,7 @@ public struct NYCHighSchoolMainView: View {
     
     @StateObject var viewModel = NYCHighSchoolMainViewModel()
     
-    init(viewModel: NYCHighSchoolMainViewModel = NYCHighSchoolMainViewModel()) {
+    public init(viewModel: NYCHighSchoolMainViewModel = NYCHighSchoolMainViewModel()) {
 
     }
     
