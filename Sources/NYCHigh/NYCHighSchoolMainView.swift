@@ -22,13 +22,11 @@ public struct NYCHighSchoolMainView: View {
                 Text("Error: \(errorMessage)")
                     .foregroundColor(.red)
             } else {
-//                NavigationStack {
-//                    List(viewModel.schoolsList, id: \.schoolName) { item in
-//                        NavigationLink(destination: NYCHighSchoolDetailsView()) {
-//                            Text(item.schoolName ?? "")
-//                        }
-//                    }
-//                }
+                List(viewModel.schoolsList, id: \.schoolName) { item in
+                    NavigationLink(destination: NYCHighSchoolDetailsView()) {
+                        Text(item.schoolName ?? "")
+                    }
+                }
             }
         }
         .task {
