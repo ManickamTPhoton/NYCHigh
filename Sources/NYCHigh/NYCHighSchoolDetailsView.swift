@@ -9,6 +9,11 @@ import SwiftUI
 
 struct NYCHighSchoolDetailsView: View {
     @StateObject var viewModel = NYCHighSchoolDetailsViewModel()
+    private var navTitle : String
+    
+    init(navTitle: String) {
+        self.navTitle = navTitle
+    }
     
     var body: some View {
         VStack {
@@ -33,6 +38,6 @@ struct NYCHighSchoolDetailsView: View {
         .task {
             viewModel.fetchParticularSchoolDetailList()
         }
-        .navigationTitle("School Detail Page")
+        .navigationTitle(navTitle)
     }
 }

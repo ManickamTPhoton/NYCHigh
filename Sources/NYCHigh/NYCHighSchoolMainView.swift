@@ -31,8 +31,10 @@ public struct NYCHighSchoolMainView: View {
                     )
                     .padding(.horizontal, 20)
                 List(viewModel.schoolsSearchList, id: \.schoolName) { item in
-                    NavigationLink(destination: NYCHighSchoolDetailsView()) {
-                        Text(item.schoolName ?? "")
+                    if let schoolName = item.schoolName{
+                        NavigationLink(destination: NYCHighSchoolDetailsView(navTitle: schoolName)) {
+                            Text(schoolName)
+                        }
                     }
                 }
             }
