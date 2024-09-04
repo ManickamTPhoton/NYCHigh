@@ -40,6 +40,9 @@ public struct NYCHighSchoolMainView: View {
         .task {
             viewModel.fetchSchoolsList()
         }
+        .onAppear(){
+            viewModel.searchText = ""
+        }
         .navigationTitle("NYC Schools List Page")
     }
 }
