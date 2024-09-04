@@ -23,8 +23,8 @@ public class NYCHighSchoolMainViewModel: ObservableObject {
         $searchText
             .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
             .sink(receiveValue: { [weak self] t in
-                self?.debouncedText = t
-            } )
+                self?.filterSearchResults()
+            })
             .store(in: &searchSubscriptions)
     }
     
