@@ -12,9 +12,20 @@ public class NYCHighSchoolMainViewModel: ObservableObject {
     @Published var schoolsList: [SchoolModel] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
-    
+    @Published var debouncedText = ""
+    @Published var searchText = ""
 
     private var cancellable: AnyCancellable?
+    private var searchSubscriptions = Set<AnyCancellable>()
+
+    init(){
+        $searchText
+            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] t in
+                self?.debouncedText = t
+            } )
+            .store(in: &searchSubscriptions)
+    }
     
     func fetchSchoolsList() {
         // Set loading state to true

@@ -22,6 +22,14 @@ public struct NYCHighSchoolMainView: View {
                 Text("Error: \(errorMessage)")
                     .foregroundColor(.red)
             } else {
+                TextField("Enter Something", text: $viewModel.searchText)
+                    .frame(height: 30)
+                    .padding(.leading, 5)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.blue, lineWidth: 1)
+                    )
+                    .padding(.horizontal, 20)
                 List(viewModel.schoolsList, id: \.schoolName) { item in
                     NavigationLink(destination: NYCHighSchoolDetailsView()) {
                         Text(item.schoolName ?? "")
