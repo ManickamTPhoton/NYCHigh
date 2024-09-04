@@ -22,7 +22,7 @@ public struct NYCHighSchoolMainView: View {
                 Text("Error: \(errorMessage)")
                     .foregroundColor(.red)
             } else {
-                TextField("Search Keyword", text: $viewModel.searchText)
+                TextField("Search schools here", text: $viewModel.searchText)
                     .frame(height: 30)
                     .padding(.leading, 5)
                     .overlay(
