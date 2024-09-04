@@ -10,6 +10,7 @@ import Combine
 
 public class NYCHighSchoolMainViewModel: ObservableObject {
     @Published var schoolsList: [SchoolModel] = []
+    @Published var schoolsSearchList: [SchoolModel] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
     @Published var debouncedText = ""
@@ -26,6 +27,13 @@ public class NYCHighSchoolMainViewModel: ObservableObject {
             } )
             .store(in: &searchSubscriptions)
     }
+    
+    private func filterSearchResults() {
+          let filteredResults = schoolsList.filter { item in
+              (item.schoolName ?? "").lowercased().contains(searchText.lowercased())
+          }
+          schoolsSearchList = filteredResults
+      }
     
     func fetchSchoolsList() {
         // Set loading state to true
@@ -54,6 +62,7 @@ public class NYCHighSchoolMainViewModel: ObservableObject {
             }, receiveValue: { List in
                 // Update the published property
                 self.schoolsList = List
+                self.schoolsSearchList = List
             })
         
     }
