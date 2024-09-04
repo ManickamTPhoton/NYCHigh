@@ -13,7 +13,6 @@ public class NYCHighSchoolMainViewModel: ObservableObject {
     @Published var schoolsSearchList: [SchoolModel] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
-    @Published var debouncedText = ""
     @Published var searchText = ""
 
     private var cancellable: AnyCancellable?
@@ -29,6 +28,10 @@ public class NYCHighSchoolMainViewModel: ObservableObject {
     }
     
     private func filterSearchResults() {
+        if searchText.isEmpty || searchText.containsWhitespace {
+            schoolsSearchList = schoolsList
+            return
+        }
           let filteredResults = schoolsList.filter { item in
               (item.schoolName ?? "").lowercased().contains(searchText.lowercased())
           }
@@ -65,5 +68,11 @@ public class NYCHighSchoolMainViewModel: ObservableObject {
                 self.schoolsSearchList = List
             })
         
+    }
+}
+
+extension String {
+    var containsWhitespace : Bool {
+        return(self.rangeOfCharacter(from: .whitespacesAndNewlines) != nil)
     }
 }
